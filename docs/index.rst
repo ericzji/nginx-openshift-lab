@@ -1,18 +1,17 @@
 F5 and Red Hat OpenShift Demo
 ===================================
 
-Welcome to the |classbold| for F5 Agility |year|
+Welcome to the |classbold|
 
 .. attention::
-   The Agility team is using this repo to document our "read-the-docs" process.
+   We using this repo to document our F5 and Red Hat OpenShift joint labs.
 
 |repoinfo|
 
 .. note::
-   Each Agility lab is typically broken down by "Class" --> "Module" --> "Lab".
+   Each lab is typically broken down by "Class" --> "Module" --> "Lab".
    Each section uses "toctree" to create the index and reference the content.
-   Using this template should give the contributer several getting-started
-   RST examples.
+
 
 .. toctree::
    :maxdepth: 3

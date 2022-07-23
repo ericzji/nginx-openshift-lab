@@ -13,7 +13,7 @@ import f5_sphinx_theme
 # ------------
 #
 # REQUIRED: Your class/lab name
-classname = "F5 NGINX and Red Hat OpenShift Demo"
+classname = "F5 and Red Hat OpenShift Demo"
 
 # OPTIONAL: The URL to the GitHub Repository for this class
 github_repo = "https://github.com/ericzji/nginx-openshift-lab"
@@ -61,8 +61,7 @@ rst_prolog = """
 
 if "github_repo" in locals() and len(github_repo) > 0:
     rst_prolog += """
-.. |repoinfo| replace:: The content contained here leverages a full DevOps CI/CD
-              pipeline and is sourced from the GitHub repository at %s.
+.. |repoinfo| replace:: The content contained here is sourced from the GitHub repository at %s.
               Bugs and Requests for enhancements can be made by
               opening an Issue within the repository.
 """ % (
