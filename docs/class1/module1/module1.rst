@@ -1,5 +1,5 @@
-NGINX Kubernetes Ingress Controller For OpenShift
--------------------------------------------------
+Lab 1: NGINX Kubernetes Ingress Controller For OpenShift
+---------------------------------------------------------
 
 |image00|
 
