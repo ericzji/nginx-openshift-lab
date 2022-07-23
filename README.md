@@ -1,0 +1,1 @@
+# nginx-openshift-lab
