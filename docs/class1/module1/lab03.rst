@@ -155,7 +155,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
    NGINX Ingress Controller URL (replace with the nginx-ingress EXTERNAL-IP): ``https://EXTERNAL-IP/``
 
-1. HTTPS with Active Monitors, Caching, mTLS
+5. HTTPS with Active Monitors, Caching, mTLS
 
    NGINX Ingress Controller can participate in the mTLS cert exchange with services.
 

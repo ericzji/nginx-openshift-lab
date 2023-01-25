@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: arcadia-main
-          image: quay.io/repository/redhat-gpst/rhpds-nginxplus-arcadia-main
+          image: quay.io/redhat-gpst/rhpds-nginxplus-arcadia-main
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
         - name: arcadia-backend
-          image: quay.io/repository/redhat-gpst/rhpds-nginxplus-arcadia-backend
+          image: quay.io/redhat-gpst/rhpds-nginxplus-arcadia-backend
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
@@ -62,7 +62,7 @@ spec:
     spec:
       containers:
         - name: arcadia-app2
-          image: quay.io/repository/redhat-gpst/rhpds-nginxplus-arcadia-app2
+          image: quay.io/redhat-gpst/rhpds-nginxplus-arcadia-app2
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
