@@ -5,13 +5,9 @@ Deploy NGINX Plus Ingress Controller with NAP
 
 Deployment Overview
 #####################
-In Lab 1, the ingress controller has already been deployed and we will focus on the items that are specific to configuring NGINX App Protect.
+In Lab 1, the NGINX Ingress Controller has already been deployed and we will focus on the items that are specific to configuring NGINX App Protect.
 
-That said, if you are interested in the topology or deploying the ingress controller, please continue on with this step. Otherwise you can skip to module 5: protecting API workloads.
-
-
-.. image:: ./pictures/arcadia-topology.png
-   :align: center
+For further reading on how to deploy the NGINX Plus Ingress controller, please refer the documentation `Installation with Manifests`_
 
 At a high-level we will:
 
@@ -57,7 +53,7 @@ For NGINX Ingress Controller in Lab 1, we already created custom resource defini
 
 To use the App Protect WAF module, create the following additional resources:
 
-Create a custom resource definition for APPolicy, APLogConf and APUserSig:
+Create a custom resource definition for APPolicy, APLogConf and APUserSig. In the terminal window, copy the below text and paste+enter:
 
     .. code-block:: bash
     
@@ -70,14 +66,10 @@ Update the Ingress Controller with NGINX App Protect WAF
 
 **Steps**
 
-    #.  Check the existing ``ingress`` already deployed and running. 
+    #.  Enable the App Protect module in the Ingress Controller.
 
-        .. code-block:: bash
-          :caption: helm removal
-
-
-    #.  update the ingress controller
-
+        From OpenShift Console, Click Operators -> Installed Operator in the left navigation column. On the page that opens, click the Nginx Ingress Controller link in the Provided APIs column. Select “my-nginx-ingress-controller”, and then click YAML to change the apppotect 'enable' to `true` under Spec:
+        
             .. code-block:: yaml
 
                 apiVersion: charts.nginx.org/v1alpha1
@@ -93,13 +85,18 @@ Update the Ingress Controller with NGINX App Protect WAF
                     repository: ericzji/nginx-plus-ingress-nap
                     tag: 2.4.1-ubi
 
-    #.  After running the command, we need to wait for the KIC pod to become available. you can use a command like:
+        Click Save, and Reload
+
+        .. note::  Make sure you pull the Ingress Controller image with App Protect. In this Lab, we alreafy loaded NGINX Plus image with App Protect to local registry.
+
+
+    #.  After reload, we need to wait for the KIC pod to become available. you can use a command like:
 
         .. code-block:: BASH
 
-           oc get pods --all-namespaces --watch
+           oc get pod -n nginx-ingress --watch
 
-    #.  Once it we have 1/1 ``plus-nginx-ingress`` ready. You can press ``ctrl-c`` to stop the watch.
+    #.  Once it we have 1/1 ``my-nginx-ingress-controller-nginx-ingress`` ready. You can press ``ctrl-c`` to stop the watch.
 
         .. image:: ./pictures/ingress-ready.png
 
@@ -109,7 +106,8 @@ Now, it is time to configure the Ingress Controller with CRD ressources (WAF pol
 
 **Steps**
 
-Execute the following commands to deploy the different resources
+Execute the following commands to deploy the different resources. In the terminal window, copy the below text and paste+enter:
+
     
     .. code-block:: bash
           
@@ -137,17 +135,22 @@ Execute the following commands to deploy the different resources
     .. literalinclude :: ./templates/waf.yaml
        :language: yaml
 
-Atth NAP Policy to the NGINX Ingress Controller’s Virtual Server
+Attach NAP Policy to the NGINX Ingress Controller’s Virtual Server
 ######################################################################
 It is important that the application always have WAF protecting it. 
 
-To enable NAP, a Virtual Server in NGINX Ingress Controller requires both a Policy and an APPolicy custom resource to be attached to it. You simply need to add the reference to the Virtual Server.
+To enable NAP for an application, a Virtual Server in NGINX Ingress Controller requires both a Policy and an APPolicy custom resource to be attached to it. You simply need to add the reference to the Virtual Server.
 
 **Steps**
 
-#. Examine the contents of the **VirtualServer** resource, which is contained in the **kic-vs.yml** file.
+#. Examine the contents of the **VirtualServer** resource ``oc get virtualserver arcadia``.
 
-#. update VirtualServer "oc edit virtualserver arcadia"
+#. update VirtualServer ``oc edit virtualserver arcadia``
+
+    .. code-block:: bash
+                  
+       oc edit virtualserver arcadia
+
 #. Add the following content to the lines immediately following `host: $nginx_ingress`, at the same indentation level:
 
           .. code-block:: yaml
@@ -176,3 +179,7 @@ To enable NAP, a Virtual Server in NGINX Ingress Controller requires both a Poli
      - name: arcadia-app3
        service: arcadia-app3
        port: 80
+
+Save and Exit.
+
+.. _Installation with Manifests: https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/

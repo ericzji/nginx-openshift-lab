@@ -81,7 +81,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
    In the terminal window, copy the below text and paste+enter:
 
    .. literalinclude :: templates/ingress-arcadia-https-monitor.yml
-      :language: text
+      :language: yaml
 
    Example:
 
@@ -108,7 +108,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
    From OpenShift Console, Click Operators -> Installed Operator in the left navigation column. On the page that opens, click the Nginx Ingress Controller link in the Provided APIs column. 
    Select "my-nginx-ingress-controller", and then click YAML to include the following ConfigMap under Spec:
 
-   .. code-block::
+   .. code-block:: yaml
 
     config:
       annotations: {}
@@ -122,7 +122,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
    In the same yaml file, we also need to add two annotations to the AWS LoadBalancer service. The annonations specify TCP layer 4 proxying: the ELB forwards traffic without modifying the headers.
 
-   .. code-block::
+   .. code-block:: yaml
 
     service:
       externalIPs: []
@@ -145,7 +145,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
    In the terminal window, copy the below text and paste+enter:
 
    .. literalinclude :: templates/ingress-arcadia-cache.yml
-      :language: text
+      :language: yaml
 
    Example:
 
@@ -168,21 +168,21 @@ Custom resources can appear and disappear in a running cluster through dynamic r
    In the terminal window, copy the below text and paste+enter:
 
    .. literalinclude :: templates/arcadiaMTLSSecret.yml
-      :language: text
+      :language: yaml
 
    Step 2. Create the custom resource policy for mTLS
 
    In the terminal window, copy the below text and paste+enter:
 
    .. literalinclude :: templates/arcadiaMTLSPolicy.yml
-      :language: text
+      :language: yaml
 
    Step 3. Create NGINX Ingress Controller with HTTPS with Active Monitors, Caching:
 
    In the terminal window, copy the below text and paste+enter:
 
    .. literalinclude :: templates/ingress-arcadia-mtls.yml
-      :language: text
+      :language: yaml
 
    Example:
 
@@ -198,7 +198,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
    In the terminal window, copy the below text and paste+enter:
 
-   .. code-block::
+   .. code-block:: bash
 
       wget https://raw.githubusercontent.com/f5devcentral/f5-digital-customer-engagement-center/main/solutions/delivery/application_delivery_controller/nginx/kic/templates/client-cert.pem
       wget https://raw.githubusercontent.com/f5devcentral/f5-digital-customer-engagement-center/main/solutions/delivery/application_delivery_controller/nginx/kic/templates/client-key.pem
@@ -214,6 +214,15 @@ Custom resources can appear and disappear in a running cluster through dynamic r
    The NGINX product team creates several examples of using NGINX VirtualServers, Ingress, and Configmaps, all of the examples in the `nginxinc GitHub repository`_ will also work in this environment.
 
 3. NGINX Examples have all been completed
+
+Clear up 
+#########
+Finally, let clean up the lab to prepare for the next Lab
+   
+    .. code-block:: bash
+      
+       oc delete  virtualserver arcadia
+       oc delete  -f arcadia.yml 
 
 
 

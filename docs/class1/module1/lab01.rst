@@ -48,7 +48,7 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
 1. In the terminal window copy the below text and paste+enter, to verify that the Operator is running
    
-   .. code-block::
+   .. code-block:: bash
 
       oc get pods -n nginx-ingress -o wide
 
@@ -64,7 +64,7 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
    run this command in a terminal, to verify that the NGINX Ingress Controller is running:
 
-   .. code-block::
+   .. code-block:: bash
 
       oc -n nginx-ingress get pods -o wide
 
@@ -74,19 +74,23 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
 4. Expose the NGINX Ingress Controller Dashboard
 
-   NGINX Ingress Controller (all purchased editions) have an internal dashboard that can be exposed. The Dashboard presents analytic stats of services deployed on NGINX. These same stats can also be exposed for collection systems like Prometheus.
+   NGINX Ingress Controller (all purchased editions) have an internal dashboard that can be exposed. The Dashboard provids analytic stats of services deployed on NGINX. These stats can also be exposed to collection systems like Prometheus.
 
-
-   .. literalinclude :: nginx-ingress-dashboard.yml
-      :language: yaml
-
-   Get the dashboard yaml.  Open the yaml file, and update the app selector to *my-nginx-ingress-controller-nginx-ingress*:
+   Use wget to download the dashboard yaml.  
    
-     .. code-block::
+     .. code-block:: bash
 
       wget https://raw.githubusercontent.com/f5devcentral/f5-digital-customer-engagement-center/main/solutions/delivery/application_delivery_controller/nginx/kic/templates/nginx-ingress-dashboard.yml
-  
-     
+       
+
+   Next, we have to change the app selector in the yaml file. We can do this with the *sed* command.
+
+     .. code-block:: bash
+
+        sed -ie 's/app\:\ nginx-ingress/app\:\ my-nginx-ingress-controller-nginx-ingress/' nginx-ingress-dashboard.yml
+
+   The yaml should now look like this:     
+
      .. code-block:: yaml
 
         apiVersion: v1
@@ -108,9 +112,9 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
         
    Expose the Dashboard. In the terminal window copy the below text and paste+enter:
 
-   .. code-block::
+       .. code-block:: bash
 
-      oc apply -f nginx-ingress-dashboard.yml
+            oc apply -f nginx-ingress-dashboard.yml
 
 5. See the NGINX Ingress Controller services
 
@@ -120,7 +124,7 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
    In the terminal window, copy the below text and paste+enter:
 
-   .. code-block::
+   .. code-block:: bash
 
       oc get svc --namespace=nginx-ingress
 
@@ -134,11 +138,11 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
     In the terminal window copy the below text and paste+enter:
 
-    .. code-block::
+    .. code-block:: bash
 
        export dashboard_nginx_ingress=$(oc get svc dashboard-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
 
-    .. code-block::
+    .. code-block:: bash
 
        export nginx_ingress=$(oc get svc my-nginx-ingress-controller-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
 

@@ -1,0 +1,30 @@
+cat << EOF | oc apply -f -
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: arcadia
+spec:
+  host: $nginx_ingress
+  upstreams:
+  - name: main
+    service: main
+    port: 80
+  - name: app2
+    service: app2
+    port: 80
+  - name: app3
+    service: app3
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: main
+  - path: /api
+    action:
+      proxy:
+        upstream: app2
+  - path: /app3
+    action:
+      proxy:
+        upstream: app3
+EOF
