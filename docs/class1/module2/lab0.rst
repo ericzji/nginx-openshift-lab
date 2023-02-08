@@ -4,6 +4,9 @@ Access Arcadia app without NGINX App Protect
 
 Publish Arcadia app with NGINX Plus Ingress Controller
 #######################################################
+
+.. note::  The Arcadia Financial application is the same application we introduced in Module 1, but a different version with enhanced features which will be used for our security lab exercises.
+
 1. Deploy the Arcadia Application into Kubernetes
 
    The Arcadia Application deployment is a single manifest file containing the resources need to build.

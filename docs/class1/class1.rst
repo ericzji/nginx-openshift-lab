@@ -8,7 +8,7 @@ standard structure of a class/module/lab.
    would miss the point of showing how we curently use RST.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
    :caption: Contents:
 

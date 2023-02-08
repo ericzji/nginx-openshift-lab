@@ -1,4 +1,4 @@
-Lab 1: NGINX Kubernetes Ingress Controller For OpenShift
+Module 1 - NGINX Kubernetes Ingress Controller For OpenShift
 ---------------------------------------------------------
 
 |image00|
@@ -6,6 +6,8 @@ Lab 1: NGINX Kubernetes Ingress Controller For OpenShift
 This solution is designed to share the experience of deploying a modern application along with the NGINX Ingress Controller for Red Hat OpenShift. Throughout the solution are steps and notes highlighting the procedure to create a successful application deployment with NGINX Ingress Controller. Examples at the end of the solution are in place to share current relevant deployment styles for todays applications.
 
 NGINX Ingress Controller solution can run on multiple clouds. The documents below have an order of operation to deploy an application that leverages NGINX Ingress Controller. 
+
+Expected time to complete: **1 hour**
 
 .. warning:: The steps assume you are using the Red Hat Demo System**
 

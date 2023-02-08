@@ -1,4 +1,4 @@
-Lab 2 - Protect Arcadia with NGINX App Protect in Kubernetes Ingress Controller
+Module 2 - Protect Arcadia with NGINX App Protect in Kubernetes Ingress Controller
 ##################################################################################
 
 In this Lab, we will deploy NGINX App Protect on an NGINX Kubernetes Ingress Controller (KIC). This will protect all applications running in the cluster with a specific policy per service.
@@ -11,6 +11,8 @@ NGINX App Protect is a new application security solution that combines the effic
 - Applying and managing security for modern and distributed application environments such as containers and microservices
 - Providing the right level of security controls without impacting release and go-to-market velocity
 - Complying with security and regulatory requirements
+
+Expected time to complete: **30 minutes**
 
 .. toctree::
    :maxdepth: 1

@@ -5,7 +5,7 @@ Deploy NGINX Plus Ingress Controller with NAP
 
 Deployment Overview
 #####################
-In Lab 1, the NGINX Ingress Controller has already been deployed and we will focus on the items that are specific to configuring NGINX App Protect.
+In Module 1, the NGINX Ingress Controller has already been deployed and we will focus on the items that are specific to configuring NGINX App Protect.
 
 For further reading on how to deploy the NGINX Plus Ingress controller, please refer the documentation `Installation with Manifests`_
 
@@ -20,13 +20,13 @@ At a high-level we will:
 Clone the Ingress Controller repo and change into the deployments folder:
    .. code-block::
 
-      git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.4.2
+      git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.0.1
       cd kubernetes-ingress/deployments
 
 
 Configure role-based access control (RBAC)
 ##########################################
-For NGINX Ingress Controller in Lab 1, we already created:
+For NGINX Ingress Controller in Module 1, we already created:
 
 - a namespace and a service account for the Ingress Controller
 - a cluster role and cluster role binding for the service account
@@ -39,7 +39,7 @@ To use the App Protect WAF module, we also need to create the App Protect role a
 
 Create the common Kubernetes resources
 #######################################
-For NGINX Ingress Controller in Lab 1, we already created the resources:
+For NGINX Ingress Controller in Module 1, we already created the resources:
 
 - a secret with a TLS certificate and a key for the default server in NGINX:
 - a config map for customizing NGINX configuration
@@ -49,7 +49,7 @@ No additional common resource is needed for the App Protect WAF module.
   
 Create Custom Resources
 ########################
-For NGINX Ingress Controller in Lab 1, we already created custom resource definitions for VirtualServer and VirtualServerRoute, TransportServer and Policy resources.
+For NGINX Ingress Controller in Module 1, we already created custom resource definitions for VirtualServer and VirtualServerRoute, TransportServer and Policy resources.
 
 To use the App Protect WAF module, create the following additional resources:
 
@@ -83,7 +83,7 @@ Update the Ingress Controller with NGINX App Protect WAF
                     image:
                     pullPolicy: IfNotPresent
                     repository: ericzji/nginx-plus-ingress-nap
-                    tag: 2.4.1-ubi
+                    tag: 2.4.0-ubi
 
         Click Save, and Reload
 
