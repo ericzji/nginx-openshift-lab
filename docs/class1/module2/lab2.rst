@@ -110,7 +110,9 @@ To verify that the F5 Application Protection WAF is logging security events, fol
 
 Get the local syslog server POD: oc get all -o wide.
 
-.. code-block:: yaml
+Example: 
+
+.. code-block:: bash
 
         [lab-user@bastion app-protect-waf]$ oc get all -o wide
         NAME                           READY   STATUS    RESTARTS   AGE   IP            NODE                                         NOMINATED NODE   READINESS GATES
@@ -122,10 +124,16 @@ Get the local syslog server POD: oc get all -o wide.
 
 Examine the logging matching the support ID of `436359350950` 
 
-.. code-block:: yaml
+Example: 
+
+.. code-block:: bash
 
         [lab-user@bastion app-protect-waf]$ oc exec -it pod/syslog-bb47bd798-2vqps  -- cat /var/log/messages | grep 4363593509500748230
         Feb  8 18:53:09 my-nginx-ingress-controller-nginx-ingress-5577cfcf9f-glfcz ASM:attack_type="SQL-Injection,Other Application Activity",blocking_exception_reason="N/A",date_time="2023-02-08 18:53:09",dest_port="80",ip_client="76.220.40.89",is_truncated="false",method="GET",policy_name="dataguard-alarm",protocol="HTTP",request_status="blocked",response_code="0",severity="Critical",sig_cves="N/A,N/A,N/A,N/A",sig_ids="200002553,200000073,200002736,200000082",sig_names="SQL-INJ integer field UNION (Parameter),SQL-INJ ""UNION SELECT"" (Parameter),SQL-INJ ' UNION SELECT (Parameter)...",sig_set_names="{SQL Injection Signatures},{SQL Injection Signatures},{SQL Injection Signatures}...",src_port="52787",sub_violations="N/A",support_id="4363593509500748230",threat_campaign_names="N/A",unit_hostname="my-nginx-ingress-controller-nginx-ingress-5577cfcf9f-glfcz",uri="/",violation_rating="5",vs_name="78-a4a7de86144454f7c9b3900612159b9a-1152717638.us-east-2.elb.amazonaws.com:8-/",x_forwarded_for_header_value="N/A",outcome="REJECTED",outcome_reason="SECURITY_WAF_VIOLATION",violations="Attack signature detected,Violation Rating Threat detected",json_log="{""violations"":[{""enforcementState"":{""isBlocked"":true},""violation"":{""name"":""VIOL_RATING_THREAT""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""SQL-INJ integer field UNION (Parameter)"",""signatureId"":200002553},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""SQL-INJ \""UNION SELECT\"" (Parameter)"",""signatureId"":200000073},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""SQL-INJ ' UNION SELECT (Parameter)"",""signatureId"":200002736},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""SQL-INJ \""SELECT FROM\"" (Parameter)"",""signatureId"":200000082},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}}]}",violation_details="<?xml version='1.0' encoding='UTF-8'?><BAD_MSG><violation_masks><block>410000000000c00-3a03030c30000072-8000000000000000-0</block><alarm>2477f0ffcbbd0fea-befbf35cb000007e-8000000000000000-0</alarm><learn>0-0-0-0</learn><staging>0-0-0-0</staging></violation_masks><request-violations><violation><viol_index>42</viol_index><viol_name>VIOL_ATTACK_SIGNATURE</viol_name><context>parameter</context><parameter_data><value_error/><enforcement_level>global</enforcement_level><name>aGZzYWdycw==</name><auto_detected_type>alpha-numeric</auto_detected_type><value>LTEgdW5pb24gc2VsZWN0IHVzZXIscGFzc3dvcmQgZnJvbSB1c2VycyAtLSA=</value><location>query</location><param_name_pattern>*</param_name_pattern><staging>0</staging></parameter_data><staging>0</staging><sig_data><sig_id>200002553</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>aGZzYWdycz0tMSB1bmlvbiBzZWxlY3QgdXNlcixwYXNzd29yZCBmcm9tIHVzZXJzIC0tIA==</buffer><offset>8</offset><length>15</length></kw_data></sig_data><sig_data><sig_id>200000073</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>aGZzYWdycz0tMSB1bmlvbiBzZWxlY3QgdXNlcixwYXNzd29yZCBmcm9tIHVzZXJzIC0tIA==</buffer><offset>8</offset><length>43</length></kw_data></sig_data><sig_data><sig_id>200002736</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>aGZzYWdycz0tMSB1bmlvbiBzZWxlY3QgdXNlcixwYXNzd29yZCBmcm9tIHVzZXJzIC0tIA==</buffer><offset>9</offset><length>14</length></kw_data></sig_data><sig_data><sig_id>200000082</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>aGZzYWdycz0tMSB1bmlvbiBzZWxlY3QgdXNlcixwYXNzd29yZCBmcm9tIHVzZXJzIC0tIA==</buffer><offset>17</offset><length>34</length></kw_data></sig_data></violation></request-violations></BAD_MSG>",bot_signature_name="N/A",bot_category="N/A",bot_anomalies="N/A",enforced_bot_anomalies="N/A",client_class="Browser",client_application="Chrome",client_application_version="109",request="GET /?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+ HTTP/1.1\r\nHost: a4a7de86144454f7c9b3900612159b9a-1152717638.us-east-2.elb.amazonaws.com\r\nConnection: keep-alive\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\nAccept-Encoding: gzip, deflate\r\nAccept-Language: en-US,en;q=0.9\r\n\r\n",transport_protocol="HTTP/1.1"
         [lab-user@bastion app-protect-waf]$
+
+The output of the command shows the relevant log entry that contains information about a SQL injection attack and the specific signatures that were triggered by the attack.
+
+Congratulations on completing the Lab!
 
         
