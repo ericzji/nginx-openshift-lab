@@ -80,11 +80,6 @@ Update the Ingress Controller with NGINX App Protect WAF
                     appprotect:
                     enable: True
 
-                    image:
-                    pullPolicy: IfNotPresent
-                    repository: ericzji/nginx-plus-ingress-nap
-                    tag: 2.4.0-ubi
-
         Click Save, and Reload
 
         .. note::  Make sure you pull the Ingress Controller image with App Protect. In this Lab, we alreafy loaded NGINX Plus image with App Protect to local registry.

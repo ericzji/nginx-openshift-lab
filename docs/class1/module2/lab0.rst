@@ -18,7 +18,7 @@ Publish Arcadia app with NGINX Plus Ingress Controller
 
    .. code-block:: bash
 
-    wget https://raw.githubusercontent.com/ericzji/nginx-openshift-lab/main/docs/class1/module4/templates/arcadia-all.yaml
+    wget https://raw.githubusercontent.com/ericzji/nginx-openshift-lab/main/docs/class1/module2/templates/arcadia-all.yaml
 
    Apply the updated yaml file. In the terminal window, copy the below text and paste+enter:
 
@@ -65,7 +65,9 @@ Publish Arcadia app with NGINX Plus Ingress Controller
 
 Access the Arcadia application
 #################################
-launch a Firefox browser and click on the Arcaida Finance bookmark.
+Arcadia application is now exposed through the NGINX Ingress Controller on HTTP!
+
+NGINX Ingress Controller URL (replace with the nginx-ingress EXTERNAL-IP): http://EXTERNAL-IP/
 
 You should be presented with the Main page, click on Login and enter the credentials as below.
 

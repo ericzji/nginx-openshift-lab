@@ -120,6 +120,10 @@ Custom resources can appear and disappear in a running cluster through dynamic r
         real-ip-header: proxy_protocol
         set-real-ip-from: 0.0.0.0/0
 
+   Example:
+
+   |image52|
+
    In the same yaml file, we also need to add two annotations to the AWS LoadBalancer service. The annonations specify TCP layer 4 proxying: the ELB forwards traffic without modifying the headers.
 
    .. code-block:: yaml
@@ -131,6 +135,11 @@ Custom resources can appear and disappear in a running cluster through dynamic r
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
         service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+
+
+   Example:
+
+   |image53|
 
    Click Save, and Reload
 
@@ -217,7 +226,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
 Clear up 
 #########
-Finally, let clean up the lab to prepare for the next Lab
+Finally, let's clean up the lab to prepare for the next Module
    
     .. code-block:: bash
       
@@ -238,6 +247,9 @@ Finally, let clean up the lab to prepare for the next Lab
 .. |image43| image:: images/image43.png
 .. |image44| image:: images/image44.png
 .. |image51| image:: images/image51.png
+
+.. |image52| image:: images/image52.png  
+.. |image53| image:: images/image53.png
 
 .. _`Custom Resources`: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 .. _`NGINX Kubernetes Ingress Controller | Destruction`: lab04.html

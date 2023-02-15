@@ -87,7 +87,8 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
      .. code-block:: bash
 
-        sed -ie 's/app\:\ nginx-ingress/app\:\ my-nginx-ingress-controller-nginx-ingress/' nginx-ingress-dashboard.yml
+        sed -i 's/app\:\ nginx-ingress/app\:\ my-nginx-ingress-controller-nginx-ingress/' nginx-ingress-dashboard.yml
+
 
    The yaml should now look like this:     
 
