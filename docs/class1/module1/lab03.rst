@@ -131,7 +131,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
     service:
       externalIPs: []
       customPorts: []
-      loadBalancerIP: ''
+      loadBalancerIP: null
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
         service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
@@ -218,11 +218,11 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
    |image44|
 
-2. The fun does not need to stop yet!
+6. The fun does not need to stop yet!
 
    The NGINX product team creates several examples of using NGINX VirtualServers, Ingress, and Configmaps, all of the examples in the `nginxinc GitHub repository`_ will also work in this environment.
 
-3. NGINX Examples have all been completed
+7. NGINX Examples have all been completed
 
 Clear up 
 #########
