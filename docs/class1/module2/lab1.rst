@@ -5,7 +5,7 @@ Deploy NGINX Plus Ingress Controller with NAP to provide security for the Arcadi
 
 Deployment Overview
 #####################
-In Module 1, we have already deployed the NGINX Ingress Controller, so we will focus on configuring NGINX App Protect in this module. For more information on deploying the NGINX Plus Ingress Controller, refer to the official documentation for please refer the documentation `Installation with Manifests`_
+In Module 1, we have already deployed the NGINX Ingress Controller, so we will focus on configuring NGINX App Protect in this module. For the complete installation of the NGINX Plus Ingress Controller, refer to the official documentation `Installation with Manifests`_
 
 At a high level, we will:
 
@@ -70,6 +70,11 @@ Update the Ingress Controller with NGINX App Protect WAF
                 controller:
                     appprotect:
                     enable: True
+
+
+        Example:
+        .. image:: ./pictures/ingress-controller-nap.png
+
 
         Click Save, and Reload
 

@@ -23,5 +23,5 @@ Expected time to complete: **1 hour**
    
    lab*
 
-.. warning:: The steps assume you are using the Red Hat Demo System**
+.. warning:: The steps assume you are using the **Red Hat Demo Platform (RHDP)**
 

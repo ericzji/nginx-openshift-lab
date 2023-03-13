@@ -1,4 +1,4 @@
-Access Arcadia app without NGINX App Protect to establish a baseline.
+Access Arcadia app without NGINX App Protect to establish a baseline
 ------------------------------------------------
 
 
