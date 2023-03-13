@@ -138,8 +138,6 @@ To verify that F5 Application Protection WAF is logging security events, follow 
 
         Example: 
                 .. image:: ./pictures/image13.png
-                        :width: 600px
-                        :align: center
 
 Congratulations on completing the Lab! You have learned how to deploy the NGINX App Protect WAF in Kubernetes and how to use the NGINX App Protect WAF to protect your applications from attacks.
 
