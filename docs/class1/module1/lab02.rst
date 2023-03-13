@@ -1,4 +1,4 @@
-Arcadia Application | Deployment
+Arcadia Application Deployment
 --------------------------------
 
 For this workshop, we are going to use the **Arcadia Financial** application.

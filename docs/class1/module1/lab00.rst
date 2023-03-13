@@ -1,4 +1,4 @@
-Quick Overview of How to Interact With OpenShift
+A Quick Overview of How to Interact With OpenShift
 ------------------------------------------------
 
 Command Line Interface

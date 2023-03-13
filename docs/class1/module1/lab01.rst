@@ -1,4 +1,4 @@
-NGINX Kubernetes Ingress Controller | Deployment
+NGINX Kubernetes Ingress Controller Deployment
 ------------------------------------------------
 
 |image00|
