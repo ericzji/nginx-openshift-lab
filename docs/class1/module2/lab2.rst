@@ -1,5 +1,6 @@
 Access the Application and test the NGINX App Protect WAF to see how it works in action
------------------------------------------------------------
+--------------------------------------------------------------------------------------- 
+
 
 Now that NGINX App Protect WAF is enabled, let's test its ability to protect against Layer 7 attacks. Follow these steps:
 
@@ -46,7 +47,7 @@ Non-browser Client,Abuse of Functionality,Server Side Code Injection,HTTP Parser
 Cross Site Scripting - ``GET / HTTP/1.1\r\nHost: <ATTACKED HOST>\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0\r\nAccept: */*\r\nAccept-Encoding: gzip,deflate\r\nCookie: hfsagrs=%27%22%5C%3E%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E\r\n\r\n"``
 
 
-** and many more from bash script below **
+**and many more from bash script below **
 
         .. code-block :: bash
 

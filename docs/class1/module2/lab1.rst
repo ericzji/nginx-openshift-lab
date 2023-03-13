@@ -45,6 +45,7 @@ Create Custom Resources
 ########################
 
 In Module 1, we created custom resource definitions for VirtualServer and VirtualServerRoute, TransportServer, and Policy resources. To use the App Protect WAF module, we need to create custom resource definitions for APPolicy, APLogConf, and APUserSig. Run the following commands to create these resources:
+    
     .. code-block:: bash
     
        oc apply -f common/crds/appprotect.f5.com_aplogconfs.yaml
@@ -103,6 +104,9 @@ Execute the following commands to deploy the different resources. In the termina
        oc apply -f ap-dataguard-alarm-policy.yaml
        oc apply -f ap-logconf.yaml
        oc apply -f waf.yaml
+
+
+  Out of above commands, we focus on the following files: 
 
   1. The ``ap-dataguard-alarm-policy.yaml`` file creates the WAF policy that specifies the rules for protecting the application from layer 7 attacks. It is recommended to customize this policy according to the specific application requirements.
  
