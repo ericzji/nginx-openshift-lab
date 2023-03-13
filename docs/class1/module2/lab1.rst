@@ -5,11 +5,9 @@ Deploy NGINX Plus Ingress Controller with NAP
 
 Deployment Overview
 #####################
-In Module 1, the NGINX Ingress Controller has already been deployed and we will focus on the items that are specific to configuring NGINX App Protect.
+In Module 1, we have already deployed the NGINX Ingress Controller, so we will focus on configuring NGINX App Protect in this module. For more information on deploying the NGINX Plus Ingress Controller, refer to the official documentation for please refer the documentation `Installation with Manifests`_
 
-For further reading on how to deploy the NGINX Plus Ingress controller, please refer the documentation `Installation with Manifests`_
-
-At a high-level we will:
+At a high level, we will:
 
   #. Configure role-based access control (RBAC)
   #. Create the common Kubernetes resources
@@ -17,7 +15,7 @@ At a high-level we will:
   #. Configure the NGINX App Protect WAF module
   #. Attach NAP Policy to the NGINX Ingress Controller’s Virtual Server
 
-Clone the Ingress Controller repo and change into the deployments folder:
+Clone the Ingress Controller repository and navigate to the deployments folder by running the following commands:
    .. code-block::
 
       git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.0.1
@@ -26,12 +24,7 @@ Clone the Ingress Controller repo and change into the deployments folder:
 
 Configure role-based access control (RBAC)
 ##########################################
-For NGINX Ingress Controller in Module 1, we already created:
-
-- a namespace and a service account for the Ingress Controller
-- a cluster role and cluster role binding for the service account
-  
-To use the App Protect WAF module, we also need to create the App Protect role and role binding:
+In Module 1, we created a namespace and a service account for the Ingress Controller, as well as a cluster role and a cluster role binding for the service account. To use the App Protect WAF module, we need to create the App Protect role and role binding by running the following command:
 
    .. code-block::
 
@@ -39,7 +32,7 @@ To use the App Protect WAF module, we also need to create the App Protect role a
 
 Create the common Kubernetes resources
 #######################################
-For NGINX Ingress Controller in Module 1, we already created the resources:
+In Module 1, we created:
 
 - a secret with a TLS certificate and a key for the default server in NGINX:
 - a config map for customizing NGINX configuration
@@ -49,12 +42,7 @@ No additional common resource is needed for the App Protect WAF module.
   
 Create Custom Resources
 ########################
-For NGINX Ingress Controller in Module 1, we already created custom resource definitions for VirtualServer and VirtualServerRoute, TransportServer and Policy resources.
-
-To use the App Protect WAF module, create the following additional resources:
-
-Create a custom resource definition for APPolicy, APLogConf and APUserSig. In the terminal window, copy the below text and paste+enter:
-
+In Module 1, we created custom resource definitions for VirtualServer and VirtualServerRoute, TransportServer, and Policy resources. To use the App Protect WAF module, we need to create custom resource definitions for APPolicy, APLogConf, and APUserSig. Run the following commands to create these resources:
     .. code-block:: bash
     
        oc apply -f common/crds/appprotect.f5.com_aplogconfs.yaml
@@ -68,7 +56,7 @@ Update the Ingress Controller with NGINX App Protect WAF
 
     #.  Enable the App Protect module in the Ingress Controller.
 
-        From OpenShift Console, Click Operators -> Installed Operator in the left navigation column. On the page that opens, click the Nginx Ingress Controller link in the Provided APIs column. Select “my-nginx-ingress-controller”, and then click YAML to change the apppotect 'enable' to `true` under Spec:
+        Enable the App Protect module in the Ingress Controller by clicking on "Operators" and then "Installed Operators" in the OpenShift Console's left navigation column. On the page that opens, click the Nginx Ingress Controller link in the "Provided APIs" column, select "my-nginx-ingress-controller," and then click YAML to change the apppotect 'enable' field to true under spec: controller:
         
             .. code-block:: yaml
 
@@ -82,16 +70,16 @@ Update the Ingress Controller with NGINX App Protect WAF
 
         Click Save, and Reload
 
-        .. note::  Make sure you pull the Ingress Controller image with App Protect. In this Lab, we alreafy loaded NGINX Plus image with App Protect to local registry.
+        .. note::  Make sure that you have pulled the Ingress Controller image with App Protect. In this lab, we have already loaded the NGINX Plus image with App Protect to a local registry.
 
 
-    #.  After reload, we need to wait for the KIC pod to become available. you can use a command like:
+    #.  After reloading, wait for the KIC pod to become available by running the command:
 
         .. code-block:: BASH
 
            oc get pod -n nginx-ingress --watch
 
-    #.  Once it we have 1/1 ``my-nginx-ingress-controller-nginx-ingress`` ready. You can press ``ctrl-c`` to stop the watch.
+    #.  When it's ready, press ``ctrl-c`` to stop the watch.
 
         .. image:: ./pictures/ingress-ready.png
 
@@ -114,31 +102,34 @@ Execute the following commands to deploy the different resources. In the termina
        oc apply -f ap-logconf.yaml
        oc apply -f waf.yaml
 
-  1. The manifest ``ap-dataguard-alarm-policy.yaml`` creates the WAF policy
+  1. The ``ap-dataguard-alarm-policy.yaml`` file creates the WAF policy that specifies the rules for protecting the application from layer 7 attacks. It is recommended to customize this policy according to the specific application requirements.
  
     .. literalinclude :: ./templates/ap-dataguard-alarm-policy.yaml
        :language: yaml
 
-  2. The manifest ``ap-logconf.yaml`` creates the Log Profile to send logs to ELK
+  2. The ``ap-logconf.yaml`` file creates the Log Profile that specifies the format of the logs to be generated when the policy detects an attack.
  
       .. literalinclude :: ./templates/ap-logconf.yaml
        :language: yaml
 
 
-  3. The manifest ``waf.yaml`` creates the WAF config (policy + log)
- 
+  3. The ``waf.yaml`` file creates the WAF configuration that links the WAF policy and Log Profile to the NGINX Ingress Controller.
     .. literalinclude :: ./templates/waf.yaml
        :language: yaml
 
 Attach NAP Policy to the NGINX Ingress Controller’s Virtual Server
 ######################################################################
-It is important that the application always have WAF protecting it. 
+It is important that the application always have WAF protecting it.
 
 To enable NAP for an application, a Virtual Server in NGINX Ingress Controller requires both a Policy and an APPolicy custom resource to be attached to it. You simply need to add the reference to the Virtual Server.
 
 **Steps**
 
 #. Examine the contents of the **VirtualServer** resource ``oc get virtualserver arcadia``.
+  
+      .. code-block:: bash
+                    
+        oc get virtualserver arcadia
 
 #. update VirtualServer ``oc edit virtualserver arcadia``
 
@@ -175,6 +166,8 @@ To enable NAP for an application, a Virtual Server in NGINX Ingress Controller r
        service: arcadia-app3
        port: 80
 
-Save and Exit.
+The waf-policy should match the name of the WAF policy created in step 2.6.
+
+#. Save the file and exit the editor.
 
 .. _Installation with Manifests: https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/

