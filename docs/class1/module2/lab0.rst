@@ -1,11 +1,11 @@
-Access Arcadia app without NGINX App Protect
+Access Arcadia app without NGINX App Protect to establish a baseline.
 ------------------------------------------------
 
 
 Deploy the Arcadia Application into Kubernetes
 #######################################################
 
-.. note::  The Arcadia Financial application is the same application we introduced in Module 1, but a different version with enhanced features which will be used for our security lab exercises.
+   .. note::  The Arcadia Financial application is the same application we introduced in Module 1, but a different version with enhanced features which will be used for our security lab exercises.
 
 
    Before we can access the Arcadia application, we need to deploy it into our Kubernetes cluster. To do this, we'll use a single manifest file that contains the necessary resources, such as Kubernetes deployments for the four Docker containers and Kubernetes services for the four Docker containers.
@@ -30,8 +30,6 @@ Deploy the Arcadia Application into Kubernetes
       oc get services
 
    This will show us the services running in our Kubernetes cluster, including those related to the Arcadia application.
-
-   Example:
 
 Export the NGINX Ingress Controller services
 #######################################################

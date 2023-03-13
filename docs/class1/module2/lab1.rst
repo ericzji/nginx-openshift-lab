@@ -1,5 +1,5 @@
 
-Deploy NGINX Plus Ingress Controller with NAP
+Deploy NGINX Plus Ingress Controller with NAP to provide security for the Arcadia application
 -----------------------------------------------------------
 
 
@@ -16,6 +16,7 @@ At a high level, we will:
   #. Attach NAP Policy to the NGINX Ingress Controller’s Virtual Server
 
 Clone the Ingress Controller repository and navigate to the deployments folder by running the following commands:
+  
    .. code-block::
 
       git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.0.1
@@ -42,6 +43,7 @@ No additional common resource is needed for the App Protect WAF module.
   
 Create Custom Resources
 ########################
+
 In Module 1, we created custom resource definitions for VirtualServer and VirtualServerRoute, TransportServer, and Policy resources. To use the App Protect WAF module, we need to create custom resource definitions for APPolicy, APLogConf, and APUserSig. Run the following commands to create these resources:
     .. code-block:: bash
     
@@ -119,7 +121,7 @@ Execute the following commands to deploy the different resources. In the termina
 
 Attach NAP Policy to the NGINX Ingress Controller’s Virtual Server
 ######################################################################
-It is important that the application always have WAF protecting it.
+It is important that the application always has a WAF protecting it.
 
 To enable NAP for an application, a Virtual Server in NGINX Ingress Controller requires both a Policy and an APPolicy custom resource to be attached to it. You simply need to add the reference to the Virtual Server.
 
@@ -145,28 +147,29 @@ To enable NAP for an application, a Virtual Server in NGINX Ingress Controller r
              - name: waf-policy
 
 
-.. code-block:: yaml
+  .. code-block:: yaml
 
-   apiVersion: k8s.nginx.org/v1
-   kind: VirtualServer
-   metadata:
-     name: arcadia
-   spec:
-     host: $nginx_ingress
-     policies:
-     - name: waf-policy
-     upstreams:
-     - name: arcadia-main
-       service: arcadia-main
-       port: 80
-     - name: arcadia-app2
-       service: arcadia-app2
-       port: 80
-     - name: arcadia-app3
-       service: arcadia-app3
-       port: 80
+    apiVersion: k8s.nginx.org/v1
+    kind: VirtualServer
+    metadata:
+      name: arcadia
+    spec:
+      host: $nginx_ingress
+      policies:
+      - name: waf-policy
+      upstreams:
+      - name: arcadia-main
+        service: arcadia-main
+        port: 80
+      - name: arcadia-app2
+        service: arcadia-app2
+        port: 80
+      - name: arcadia-app3
+        service: arcadia-app3
+        port: 80
 
-The waf-policy should match the name of the WAF policy created in step 2.6.
+  
+  The waf-policy should match the name of the WAF policy created in step 2.6.
 
 #. Save the file and exit the editor.
 
