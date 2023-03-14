@@ -89,11 +89,11 @@ Congratulations on securing your application!
                 sleep 3
 
                 echo "-----------------------------------------------------------------------------"
-                echo "Apache Whitespace"
+                echo "Carriage Return Escaping"
                 echo "Sending: curl -k 'http://$EXTERNAL_IP/carriage_return_escaped%0d.html?x=1&y=2'"
                 echo "-----------------------------------------------------------------------------"
 
-                # Send a request with Apache whitespace
+                # Send a request with carriage return escaping
                 curl -k "http://$EXTERNAL_IP/carriage_return_escaped%0d.html?x=1&y=2"
                 sleep 3
 
