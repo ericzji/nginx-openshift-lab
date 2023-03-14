@@ -126,8 +126,7 @@ To verify that F5 Application Protection WAF is logging security events, follow 
                 main-584fc64db4-kz5c8      1/1     Running   0          70m   10.131.0.22   ip-10-0-223-88.us-east-2.compute.internal    <none>           <none>
                 syslog-bb47bd798-mhh64     1/1     Running   0          25m   10.129.2.46   ip-10-0-241-74.us-east-2.compute.internal    <none>           <none>
 
-#. Examine the logging matching the support ID of `436359350950` 
-
+#. Examine the logging matching the support ID of the attack
        
 
         .. code-block:: bash
