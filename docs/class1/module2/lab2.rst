@@ -33,7 +33,7 @@ Launch the Firefox browser and open Arcadia Finance app:
 Congratulations on securing your application!
 
 
-**Here are some optional attacks you can try**
+**Here are some optional attacks you can try (Optional)**
 
 - SQL Injection - ``GET /?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+``
 - Remote File Include - ``GET /?hfsagrs=php%3A%2F%2Ffilter%2Fresource%3Dhttp%3A%2F%2Fgoogle.com%2Fsearch``
@@ -47,7 +47,7 @@ Congratulations on securing your application!
 - Cross Site Scripting - ``GET / HTTP/1.1\r\nHost: <ATTACKED HOST>\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0\r\nAccept: */*\r\nAccept-Encoding: gzip,deflate\r\nCookie: hfsagrs=%27%22%5C%3E%3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E\r\n\r\n"``
 
 
-**and many more from bash script below (you can run it after you complete the lab)**
+**and many more from bash script below (Just for your information)**
 
         .. code-block :: bash
 
