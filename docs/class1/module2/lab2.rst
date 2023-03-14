@@ -136,6 +136,7 @@ To verify that F5 Application Protection WAF is logging security events, follow 
         Where ``pod/syslog-bb47bd798-mhh64`` is the name of the pod and container where the syslog server is running. ``7175144470433567675`` is support ID of the attack.
 
         Example: 
+               
                 .. image:: ./pictures/image13.png
 
 Congratulations on completing the Lab! You have learned how to deploy the NGINX App Protect WAF in Kubernetes and how to use the NGINX App Protect WAF to protect your applications from attacks.
