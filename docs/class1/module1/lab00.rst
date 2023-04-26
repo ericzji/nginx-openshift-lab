@@ -37,6 +37,10 @@ Select Developer to switch to the Developer perspective. Once the Developer pers
 
    |image004|
 
+Select Administrator to switch back to the Administrator perspective. Once the Administrator perspective loads, you should be in the Overview view. 
+
+   |image001|
+
 We will be using a mix of command line tooling and the web console for the labs. Get ready!
 
 

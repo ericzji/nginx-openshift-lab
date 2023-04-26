@@ -86,8 +86,8 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
    Next, we have to change the app selector in the yaml file. We can do this with the *sed* command.
 
      .. code-block:: bash
-
-        sed -i 's/app\:\ nginx-ingress/app\:\ my-nginx-ingress-controller-nginx-ingress/' nginx-ingress-dashboard.yml
+     
+        sed -i 's/app\:\ nginx-ingress/app.kubernetes.io\/name\:\ nginx-ingress/' nginx-ingress-dashboard.yml
 
 
    The yaml should now look like this:     
@@ -109,7 +109,7 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
             protocol: TCP
             name: http
           selector:
-            app: my-nginx-ingress-controller-nginx-ingress
+            app.kubernetes.io/name: nginx-ingress
         
    Expose the Dashboard. In the terminal window copy the below text and paste+enter:
 
@@ -145,7 +145,7 @@ we also deployed the NGINX Plus Ingress Controller for Kubernetes deployment.
 
     .. code-block:: bash
 
-       export nginx_ingress=$(oc get svc my-nginx-ingress-controller-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
+       export nginx_ingress=$(oc get svc my-nginx-ingress-controller --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
 
 7.  Browse to the exposed NGINX Ingress Controller services
 
