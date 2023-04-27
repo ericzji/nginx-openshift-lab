@@ -124,6 +124,8 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
    |image52|
 
+   .. note::  Please be aware that the line numbers mentioned in this guide may have changed due to updates or revisions in the code. 
+
    In the same yaml file, we also need to add two annotations to the AWS LoadBalancer service. The annonations specify TCP layer 4 proxying: the ELB forwards traffic without modifying the headers.
 
    .. code-block:: yaml
