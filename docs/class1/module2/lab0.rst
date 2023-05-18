@@ -40,7 +40,7 @@ Export the NGINX Ingress Controller services
 
     .. code-block:: bash
 
-       export nginx_ingress=$(oc get svc my-nginx-ingress-controller-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
+       export nginx_ingress=$(oc get svc my-nginx-ingress-controller --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
 
 
 Publish Arcadia app with NGINX Plus Ingress Controller
