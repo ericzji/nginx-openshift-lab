@@ -106,7 +106,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
    Step 1. Create NGINX Ingress Controller Caching Path:
 
    From OpenShift Console, Click Operators -> Installed Operator in the left navigation column. On the page that opens, click the Nginx Ingress Controller link in the Provided APIs column. 
-   Select "my-nginx-ingress-controller", and then click YAML to include the following ConfigMap under Spec:
+   Select "my-nginx-ingress", and then click YAML to include the following ConfigMap under Spec:
 
    .. code-block:: yaml
 
@@ -121,10 +121,9 @@ Custom resources can appear and disappear in a running cluster through dynamic r
         set-real-ip-from: 0.0.0.0/0
 
    Example:
+   .. note::  Please be aware that the line numbers mentioned in this guide may have changed due to updates or revisions in the code. 
 
    |image52|
-
-   .. note::  Please be aware that the line numbers mentioned in this guide may have changed due to updates or revisions in the code. 
 
    In the same yaml file, we also need to add two annotations to the AWS LoadBalancer service. The annonations specify TCP layer 4 proxying: the ELB forwards traffic without modifying the headers.
 
@@ -133,11 +132,10 @@ Custom resources can appear and disappear in a running cluster through dynamic r
     service:
       externalIPs: []
       customPorts: []
-      loadBalancerIP: null
+      loadBalancerIP: ''
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
         service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
-
 
    Example:
 
