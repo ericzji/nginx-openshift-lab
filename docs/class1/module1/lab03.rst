@@ -121,6 +121,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
         set-real-ip-from: 0.0.0.0/0
 
    Example:
+   
    .. note::  Please be aware that the line numbers mentioned in this guide may have changed due to updates or revisions in the code. 
 
    |image52|
