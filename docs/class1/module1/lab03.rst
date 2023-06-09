@@ -121,7 +121,7 @@ Custom resources can appear and disappear in a running cluster through dynamic r
         set-real-ip-from: 0.0.0.0/0
 
    Example:
-   
+
    .. note::  Please be aware that the line numbers mentioned in this guide may have changed due to updates or revisions in the code. 
 
    |image52|
@@ -254,4 +254,4 @@ Finally, to prepare for the next Module, we will need to clean up the lab enviro
 
 .. _`Custom Resources`: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 .. _`NGINX Kubernetes Ingress Controller | Destruction`: lab04.html
-.. _`nginxinc GitHub repository`: https://github.com/nginxinc/kubernetes-ingress/tree/master/examples-of-custom-resources
+.. _`nginxinc GitHub repository`: https://github.com/nginxinc/kubernetes-ingress/tree/main/examples-of-custom-resources
