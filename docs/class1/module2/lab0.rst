@@ -1,6 +1,17 @@
 Access Arcadia app without NGINX App Protect to establish a baseline
 ------------------------------------------------
 
+Cleanup Process
+###############
+Upon the completion of Lab Module 1, it's necessary to tidy up the lab environment. Please follow the steps mentioned below.
+
+Execute the following commands in the bash terminal:
+
+    .. code-block:: bash
+      
+       oc delete  virtualserver arcadia
+       oc delete  -f arcadia.yml 
+
 
 Deploy the Arcadia Application into Kubernetes
 #######################################################

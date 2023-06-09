@@ -225,15 +225,6 @@ Custom resources can appear and disappear in a running cluster through dynamic r
 
 7. NGINX Examples have all been completed
 
-Cleanup 
-#########
-Finally, to prepare for the next Module, we will need to clean up the lab environment.
-   
-    .. code-block:: bash
-      
-       oc delete  virtualserver arcadia
-       oc delete  -f arcadia.yml 
-
 
 
 .. |image31| image:: images/image31.png
