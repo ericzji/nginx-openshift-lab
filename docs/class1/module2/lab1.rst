@@ -115,7 +115,7 @@ Execute the following commands to deploy the different resources. In the termina
 
   1. The ``ap-dataguard-alarm-policy.yaml`` file creates the WAF policy that specifies the rules for protecting the application from layer 7 attacks. It is recommended to customize this policy according to the specific application requirements.
  
-     For this Lab, we just go ahead to ignore the "apple_sigs" signature set. Please go ahead to remove the following lines from ``ap-dataguard-alarm-policy.yaml``:
+  For this Lab, we just go ahead to ignore the "apple_sigs" signature set. Please go ahead to remove the following lines from ``ap-dataguard-alarm-policy.yaml``:
 
         .. code-block:: yaml
 
@@ -129,23 +129,32 @@ Execute the following commands to deploy the different resources. In the termina
                 tagValue: Fruits
                 tagFilter: eq
      
-     In the terminal window, copy the below text and paste+enter, to reapply the `ap-dataguard-alarm-policy.yaml``:
+  Alternatively, we can do this with the *sed* command.
+
+     .. code-block:: bash
+     
+        sed -i '/signature-requirements:/,/eq/d' ap-dataguard-alarm-policy.yaml
+
+  The modified ``ap-dataguard-alarm-policy.yaml`` should look like the following:
+
+     .. literalinclude :: ./templates/ap-dataguard-alarm-policy.yaml
+      :language: yaml
+     
+  
+  In the terminal window, copy the below text and paste+enter, to reapply the ``ap-dataguard-alarm-policy.yaml``:
     
     .. code-block:: bash
-  
-       oc apply -f ap-dataguard-alarm-policy.yaml
+
+        oc apply -f ap-dataguard-alarm-policy.yaml
 
 
-    .. literalinclude :: ./templates/ap-dataguard-alarm-policy.yaml
-       :language: yaml
-
-  2. The ``ap-logconf.yaml`` file creates the Log Profile that specifies the format of the logs to be generated when the policy detects an attack.
+  1. The ``ap-logconf.yaml`` file creates the Log Profile that specifies the format of the logs to be generated when the policy detects an attack.
  
       .. literalinclude :: ./templates/ap-logconf.yaml
        :language: yaml
 
 
-  3. The ``waf.yaml`` file creates the WAF configuration that links the WAF policy and Log Profile to the NGINX Ingress Controller.
+  2. The ``waf.yaml`` file creates the WAF configuration that links the WAF policy and Log Profile to the NGINX Ingress Controller.
     .. literalinclude :: ./templates/waf.yaml
        :language: yaml
 
