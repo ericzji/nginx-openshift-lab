@@ -254,4 +254,4 @@ Finally, to prepare for the next Module, we will need to clean up the lab enviro
 
 .. _`Custom Resources`: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 .. _`NGINX Kubernetes Ingress Controller | Destruction`: lab04.html
-.. _`nginxinc GitHub repository`: https://github.com/nginxinc/kubernetes-ingress/tree/main/examples-of-custom-resources
+.. _`nginxinc GitHub repository`: https://github.com/nginxinc/kubernetes-ingress/tree/main/examples/custom-resources
