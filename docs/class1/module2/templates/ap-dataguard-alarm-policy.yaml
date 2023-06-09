@@ -4,15 +4,6 @@ metadata:
   name: dataguard-alarm
 spec:
   policy:
-    signature-requirements:
-    - tag: Fruits
-    signature-sets:
-    - name: apple_sigs
-      block: true
-      signatureSet:
-        filter:
-          tagValue: Fruits
-          tagFilter: eq
     applicationLanguage: utf-8
     blocking-settings:
       violations:
