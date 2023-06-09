@@ -59,7 +59,7 @@ Update the Ingress Controller with NGINX App Protect WAF
 
     #.  Enable the App Protect module in the Ingress Controller.
 
-        Enable the App Protect module in the Ingress Controller by clicking on "Operators" and then "Installed Operators" in the OpenShift Console's left navigation column. On the page that opens, click the Nginx Ingress Controller link in the "Provided APIs" column, select "my-nginx-ingress," and then click YAML to change the apppotect 'enable' field to true under spec: controller:
+        Enable the App Protect module in the Ingress Controller by clicking on "Operators" and then "Installed Operators" in the OpenShift Console's left navigation column. On the page that opens, click the Nginx Ingress Controller link in the "Provided APIs" column, select "my-nginx-ingress-controller," and then click YAML to change the apppotect 'enable' field to true under spec: controller:
         
             .. code-block:: yaml
 
@@ -73,7 +73,6 @@ Update the Ingress Controller with NGINX App Protect WAF
 
 
         Example:
-        
         .. image:: ./pictures/ingress-controller-nap.png
 
 
@@ -116,6 +115,27 @@ Execute the following commands to deploy the different resources. In the termina
 
   1. The ``ap-dataguard-alarm-policy.yaml`` file creates the WAF policy that specifies the rules for protecting the application from layer 7 attacks. It is recommended to customize this policy according to the specific application requirements.
  
+     For this Lab, we just go ahead to ignore the "apple_sigs" signature set. Please go ahead to remove the following lines from ``ap-dataguard-alarm-policy.yaml``:
+
+        .. code-block:: yaml
+
+          signature-requirements:
+          - tag: Fruits
+          signature-sets:
+          - name: apple_sigs
+            block: true
+            signatureSet:
+              filter:
+                tagValue: Fruits
+                tagFilter: eq
+     
+     In the terminal window, copy the below text and paste+enter, to reapply the `ap-dataguard-alarm-policy.yaml``:
+    
+    .. code-block:: bash
+  
+       oc apply -f ap-dataguard-alarm-policy.yaml
+
+
     .. literalinclude :: ./templates/ap-dataguard-alarm-policy.yaml
        :language: yaml
 
