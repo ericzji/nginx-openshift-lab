@@ -185,30 +185,32 @@ To enable NAP for an application, a Virtual Server in NGINX Ingress Controller r
              policies:
              - name: waf-policy
 
+    Once modified, your ``virtualserver`` should resemble this:
 
-  .. code-block:: yaml
+          .. code-block:: yaml
 
-    apiVersion: k8s.nginx.org/v1
-    kind: VirtualServer
-    metadata:
-      name: arcadia
-    spec:
-      host: $nginx_ingress
-      policies:
-      - name: waf-policy
-      upstreams:
-      - name: arcadia-main
-        service: arcadia-main
-        port: 80
-      - name: arcadia-app2
-        service: arcadia-app2
-        port: 80
-      - name: arcadia-app3
-        service: arcadia-app3
-        port: 80
+            apiVersion: k8s.nginx.org/v1
+            kind: VirtualServer
+            metadata:
+              name: arcadia
+            spec:
+              host: $nginx_ingress
+              policies:
+              - name: waf-policy
+              upstreams:
+              - name: arcadia-main
+                service: arcadia-main
+                port: 80
+              - name: arcadia-app2
+                service: arcadia-app2
+                port: 80
+              - name: arcadia-app3
+                service: arcadia-app3
+                port: 80
 
   
-  The waf-policy should match the name of the WAF policy created in step 2.6.
+    The waf-policy should match the name of the WAF policy created in step 2.6.
+
 
 #. Save the file and exit the editor.
 
