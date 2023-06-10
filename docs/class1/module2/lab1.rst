@@ -185,7 +185,7 @@ To enable NAP for an application, a Virtual Server in NGINX Ingress Controller r
              policies:
              - name: waf-policy
 
-    Once modified, your ``virtualserver`` should resemble this:
+    Once modified, your ``virtualserver`` yaml should resemble this:
 
           .. code-block:: yaml
 
