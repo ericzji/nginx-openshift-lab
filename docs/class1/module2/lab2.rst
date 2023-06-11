@@ -53,7 +53,7 @@ Congratulations on securing your application!
 
 **and many more from bash script below (Just for your information)**
 
-.. note:: Execute the attack by running the following bash script from the terminal window 
+                .. note:: Execute the attack by running the following bash script from the terminal window 
 
         .. code-block :: bash
 
@@ -118,7 +118,11 @@ Security Logging
 
 To verify that F5 Application Protection WAF is logging security events, follow these steps:
 
-#. Get the local syslog server POD by running ``oc get pod -o wide``
+#. Get the local syslog server POD.  In the terminal window, copy the below text and paste+enter:
+
+        .. code-block:: bash
+                
+                oc get pod -o wide
 
         Example: 
 
@@ -134,7 +138,8 @@ To verify that F5 Application Protection WAF is logging security events, follow 
 
 #. Examine the logging matching the support ID of the attack
        
-
+        In the terminal window, copy the below text and paste+enter:
+        
         .. code-block:: bash
 
                 oc exec -it pod/syslog-bb47bd798-mhh64  -- cat /var/log/messages | grep 7175144470433567675
