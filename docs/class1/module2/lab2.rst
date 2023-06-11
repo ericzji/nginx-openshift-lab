@@ -6,6 +6,8 @@ Now that NGINX App Protect WAF is enabled, let's test its ability to protect aga
 
 Launch the Firefox browser and open Arcadia Finance app:
 
+.. note::  Make sure you get the nginx-ingress EXTERNAL-IP with commmand ``oc get svc --namespace=nginx-ingress``
+
     #. In the Browser, open NGINX Ingress Controller URL to access Arcadia app (replace with the nginx-ingress EXTERNAL-IP): http://EXTERNAL-IP/
     #. Click on ``Login`` and use the credentials ``matt:ilovef5``
     #. You should see all the apps running (main, back, app2 and app3)
@@ -35,6 +37,8 @@ Congratulations on securing your application!
 
 **Here are some optional attacks you can try (Optional)**
 
+.. note:: Execute the attack by appending such string as ``?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+`` to the end of the application URL. 
+
 - SQL Injection - ``GET /?hfsagrs=-1+union+select+user%2Cpassword+from+users+--+``
 - Remote File Include - ``GET /?hfsagrs=php%3A%2F%2Ffilter%2Fresource%3Dhttp%3A%2F%2Fgoogle.com%2Fsearch``
 - Command Execution - ``GET /?hfsagrs=%2Fproc%2Fself%2Fenviron``
@@ -48,6 +52,8 @@ Congratulations on securing your application!
 
 
 **and many more from bash script below (Just for your information)**
+
+.. note:: Execute the attack by running the following bash script from the terminal window 
 
         .. code-block :: bash
 
@@ -131,7 +137,7 @@ To verify that F5 Application Protection WAF is logging security events, follow 
 
         .. code-block:: bash
 
-                [lab-user@bastion app-protect-waf]$ oc exec -it pod/syslog-bb47bd798-mhh64  -- cat /var/log/messages | grep 7175144470433567675
+                oc exec -it pod/syslog-bb47bd798-mhh64  -- cat /var/log/messages | grep 7175144470433567675
 
         Where ``pod/syslog-bb47bd798-mhh64`` is the name of the pod and container where the syslog server is running. ``7175144470433567675`` is support ID of the attack.
 
