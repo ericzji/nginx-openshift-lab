@@ -6,7 +6,7 @@ Now that NGINX App Protect WAF is enabled, let's test its ability to protect aga
 
 Launch the Firefox browser and open Arcadia Finance app:
 
-.. note::  Make sure you get the nginx-ingress EXTERNAL-IP with commmand ``oc get svc --namespace=nginx-ingress``
+        .. note::  Make sure you get the nginx-ingress EXTERNAL-IP with commmand ``oc get svc --namespace=nginx-ingress``
 
     #. In the Browser, open NGINX Ingress Controller URL to access Arcadia app (replace with the nginx-ingress EXTERNAL-IP): http://EXTERNAL-IP/
     #. Click on ``Login`` and use the credentials ``matt:ilovef5``
