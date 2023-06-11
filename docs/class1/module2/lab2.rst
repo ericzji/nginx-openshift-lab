@@ -118,7 +118,9 @@ Security Logging
 
 To verify that F5 Application Protection WAF is logging security events, follow these steps:
 
-#. Get the local syslog server POD.  In the terminal window, copy the below text and paste+enter:
+#. Get the local syslog server POD.  
+
+        In the terminal window, copy the below text and paste+enter:
 
         .. code-block:: bash
                 
@@ -139,7 +141,7 @@ To verify that F5 Application Protection WAF is logging security events, follow 
 #. Examine the logging matching the support ID of the attack
        
         In the terminal window, copy the below text and paste+enter:
-        
+
         .. code-block:: bash
 
                 oc exec -it pod/syslog-bb47bd798-mhh64  -- cat /var/log/messages | grep 7175144470433567675

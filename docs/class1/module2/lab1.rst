@@ -74,6 +74,8 @@ Update the Ingress Controller with NGINX App Protect WAF
 
         Example:
         
+        .. note::  Please be aware that the line numbers mentioned in this guide may have changed due to updates or revisions in the code. 
+
         .. image:: ./pictures/ingress-controller-nap.png
 
 
